@@ -22,11 +22,13 @@ public class ParsedOrderTest extends TestCase {
 	@Test
 	public void testValidateOrderExceptions() throws Exception{
 		String[] order1 = {"$1413", "3"};
+		boolean caughtException = false;
 		try{
 			ParsedOrder a = new ParsedOrder(order1);
 		}catch(Exception e){
-			System.out.println("passed");
+			caughtException = true;
 		}
+		assertTrue(caughtException);
 	}
 
 	@Test
@@ -40,11 +42,13 @@ public class ParsedOrderTest extends TestCase {
 	@Test
 	public void testSetBasePriceExceptions() throws Exception{
 		String[] order1 = {"$-1500", "3", "people"};
+		boolean caughtException = false;
 		try{
 			ParsedOrder a = new ParsedOrder(order1);
 		}catch(Exception e){
-			System.out.println("asfa");
+			caughtException = true;
 		}
+		assertTrue(caughtException);
 	}
 
 	@Test
@@ -58,11 +62,13 @@ public class ParsedOrderTest extends TestCase {
 	@Test
 	public void testSetNumPeopleExceptions() throws Exception{
 		String[] order1 = {"$1500", "-4", "people"};
+		boolean caughtException = false;
 		try{
 			ParsedOrder a = new ParsedOrder(order1);
 		}catch(Exception e){
-			System.out.println("fuck");
+			caughtException = true;
 		}
+		assertTrue(caughtException);
 	}
 	
 	@Test
