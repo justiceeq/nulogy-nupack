@@ -6,7 +6,9 @@ import junit.framework.TestCase;
 
 public class ParsedOrderTest extends TestCase {
 	
+	private double epsilon = 0.001;
 	
+	@Test
 	public void testValidateOrderOptions() throws Exception{
 		String[] order1 = {"$1500", "3", "people", "option1", "option2"};
 		ParsedOrder a = new ParsedOrder(order1);
@@ -17,6 +19,7 @@ public class ParsedOrderTest extends TestCase {
 		assertFalse(b.getHasOptions());
 	}
 	
+	@Test
 	public void testValidateOrderExceptions() throws Exception{
 		String[] order1 = {"$1413", "3"};
 		try{
@@ -26,13 +29,15 @@ public class ParsedOrderTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testSetBasePrice() throws Exception {
 		String[] order1 = {"$1500", "3", "people"};
 		ParsedOrder a = new ParsedOrder(order1);
 		
-		assertEquals(1500.0, a.getBasePrice());
+		assertEquals(1500.0, a.getBasePrice(), epsilon);
 	}
 	
+	@Test
 	public void testSetBasePriceExceptions() throws Exception{
 		String[] order1 = {"$-1500", "3", "people"};
 		try{
@@ -42,6 +47,7 @@ public class ParsedOrderTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testSetNumPeople() throws Exception {
 		String[] order1 = {"$1500", "15", "people"};
 		ParsedOrder a = new ParsedOrder(order1);
@@ -49,6 +55,7 @@ public class ParsedOrderTest extends TestCase {
 		assertEquals(15, a.getnumPeople());
 	}
 	
+	@Test
 	public void testSetNumPeopleExceptions() throws Exception{
 		String[] order1 = {"$1500", "-4", "people"};
 		try{
@@ -58,6 +65,7 @@ public class ParsedOrderTest extends TestCase {
 		}
 	}
 	
+	@Test
 	public void testCreateOptions() throws Exception{
 		String[] order1 = {"1256125.22", "2", "people", "socks", "drugs",
 				"dogs"};
